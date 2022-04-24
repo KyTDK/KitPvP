@@ -20,6 +20,7 @@ import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.Potion;
@@ -52,9 +53,8 @@ public class ItemListener implements Listener {
 	public void onInteract(PlayerInteractEvent e) {
 
 		Player p = e.getPlayer();
-
 		if (Toolkit.inArena(p) && (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK)) {
-
+			if(e.getHand() != EquipmentSlot.HAND) return;
 			ItemStack item = Toolkit.getMainHandItem(p);
 			ItemMeta meta = item.getItemMeta();
 
@@ -322,7 +322,7 @@ public class ItemListener implements Listener {
 		Player p = e.getPlayer();
 
 		if (Toolkit.inArena(p) && e.getRightClicked().getType() == EntityType.PLAYER) {
-
+			if(e.getHand() != EquipmentSlot.HAND) return;
 			ItemStack item = Toolkit.getMainHandItem(p);
 			Player damagedPlayer = (Player) e.getRightClicked();
 

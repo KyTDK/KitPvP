@@ -1,6 +1,8 @@
 package com.planetgallium.kitpvp.util;
 
+import com.sk89q.worldedit.world.World;
 import com.sk89q.worldguard.LocalPlayer;
+import com.sk89q.worldguard.WorldGuard;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import com.sk89q.worldguard.protection.ApplicableRegionSet;
 import com.sk89q.worldguard.protection.flags.StateFlag;
@@ -39,7 +41,7 @@ public class WorldGuardAPI {
 
         LocalPlayer localPlayer = WorldGuardPlugin.inst().wrapPlayer(player);
 
-        com.sk89q.worldguard.protection.managers.RegionManager regionManager = com.sk89q.worldguard.bukkit.WGBukkit.getRegionManager(location.getWorld());
+        com.sk89q.worldguard.protection.managers.RegionManager regionManager = WorldGuard.getInstance().getPlatform().getRegionContainer().get((World) location.getWorld());
         com.sk89q.worldguard.protection.ApplicableRegionSet regionSet = null;
 
         try {
